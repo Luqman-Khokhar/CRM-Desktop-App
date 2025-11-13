@@ -1,31 +1,53 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { HomePage } from './pages/Home';
-import { AboutPage } from './pages/About';
-import { SettingsPage } from './pages/Settings';
+import React, { useState } from "react";
+import { Layout } from "antd";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/Home";
+import AboutPage from "./pages/About";
+import SettingsPage from "./pages/Settings";
+import Sidebar from "./layout/sideBar";
+import HeadBar from "./layout/headBar";
 
+export default function App() {
+  const [collapsed, setCollapsed] = useState(false);
+  const toggleCollapse = () => setCollapsed(!collapsed);
 
-function App() {
   return (
-    <>
-      <Router>
-        <nav style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/settings">Settings</Link>
-        </nav>
+    <Router>
+      <Layout style={{ minHeight: "100vh",minWidth:'100vw'  }}>
+        {/* Sidebar */}
+        <Sidebar collapsed={collapsed} />
 
-        <Routes>
-          <Route path="/" element={<HomePage/>} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-        </Routes>
-      </Router>
-    </>
-  )
+        {/* Main layout with margin for sidebar */}
+        <Layout
+          style={{
+            marginLeft: collapsed ? 80 : 250,
+            transition: "margin-left 0.2s",
+            minHeight: "100vh",
+          }}
+        >
+          {/* HeadBar */}
+          <HeadBar collapsed={collapsed} toggleCollapse={toggleCollapse} />
+
+          {/* Content */}
+          <Layout.Content
+            style={{
+              marginTop: 64, // space for HeadBar
+              padding: 24,
+              flex: 1, // make it grow to fill remaining vertical space
+              overflowY: "auto",
+              backgroundColor: "#f0f2f5",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+            </Routes>
+          </Layout.Content>
+        </Layout>
+      </Layout>
+    </Router>
+  );
 }
-
-export default App
