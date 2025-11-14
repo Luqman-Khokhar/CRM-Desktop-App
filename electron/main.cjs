@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
+const url = require("url");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -11,11 +12,11 @@ function createWindow() {
   });
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    // Development: load Vite server
     win.loadURL(process.env.VITE_DEV_SERVER_URL);
   } else {
-    // Production: load the built React files
-    win.loadFile(path.join(__dirname, "../dist/index.html"));
+    win.loadURL(
+      url.pathToFileURL(path.join(__dirname, "../dist/index.html")).href
+    );
   }
 }
 

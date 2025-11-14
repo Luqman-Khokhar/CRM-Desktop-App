@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
 import AboutPage from "./pages/About";
 import SettingsPage from "./pages/Settings";
@@ -13,11 +13,9 @@ export default function App() {
 
   return (
     <Router>
-      <Layout style={{ minHeight: "100vh",minWidth:'100vw'  }}>
-        {/* Sidebar */}
+      <Layout style={{ minHeight: "100vh", minWidth: "100vw" }}>
         <Sidebar collapsed={collapsed} />
 
-        {/* Main layout with margin for sidebar */}
         <Layout
           style={{
             marginLeft: collapsed ? 80 : 250,
@@ -25,15 +23,13 @@ export default function App() {
             minHeight: "100vh",
           }}
         >
-          {/* HeadBar */}
           <HeadBar collapsed={collapsed} toggleCollapse={toggleCollapse} />
 
-          {/* Content */}
           <Layout.Content
             style={{
-              marginTop: 64, // space for HeadBar
+              marginTop: 64,
               padding: 24,
-              flex: 1, // make it grow to fill remaining vertical space
+              flex: 1,
               overflowY: "auto",
               backgroundColor: "#f0f2f5",
               display: "flex",
