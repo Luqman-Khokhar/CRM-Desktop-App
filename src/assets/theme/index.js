@@ -61,70 +61,195 @@ import icon from "../../assets/theme/components/icon";
 import svgIcon from "../../assets/theme/components/svgIcon";
 import link from "../../assets/theme/components/link";
 
-export default createTheme({
-  breakpoints: { ...breakpoints },
-  palette: { ...colors },
-  typography: { ...typography },
-  boxShadows: { ...boxShadows },
-  borders: { ...borders },
-  functions: {
-    boxShadow,
-    hexToRgb,
-    linearGradient,
-    pxToRem,
-    rgba,
-  },
+// export default createTheme({
+//   breakpoints: { ...breakpoints },
+//   palette: { ...colors },
+//   typography: { ...typography },
+//   boxShadows: { ...boxShadows },
+//   borders: { ...borders },
+//   functions: {
+//     boxShadow,
+//     hexToRgb,
+//     linearGradient,
+//     pxToRem,
+//     rgba,
+//   },
 
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        ...globals,
-        ...container,
+//   components: {
+//     MuiCssBaseline: {
+//       styleOverrides: {
+//         ...globals,
+//         ...container,
+//       },
+//     },
+//     MuiDrawer: { ...sidenav },
+//     MuiList: { ...list },
+//     MuiListItem: { ...listItem },
+//     MuiListItemText: { ...listItemText },
+//     MuiCard: { ...card },
+//     MuiCardMedia: { ...cardMedia },
+//     MuiCardContent: { ...cardContent },
+//     MuiButton: { ...button },
+//     MuiIconButton: { ...iconButton },
+//     MuiInputBase: { ...inputBase },
+//     MuiMenu: { ...menu },
+//     MuiMenuItem: { ...menuItem },
+//     MuiSwitch: { ...switchButton },
+//     MuiDivider: { ...divider },
+//     MuiTableContainer: { ...tableContainer },
+//     MuiTableHead: { ...tableHead },
+//     MuiTableCell: { ...tableCell },
+//     MuiLinearProgress: { ...linearProgress },
+//     MuiBreadcrumbs: { ...breadcrumbs },
+//     MuiSlider: { ...slider },
+//     MuiAvatar: { ...avatar },
+//     MuiTooltip: { ...tooltip },
+//     MuiAppBar: { ...appBar },
+//     MuiTabs: { ...tabs },
+//     MuiTab: { ...tab },
+//     MuiStepper: { ...stepper },
+//     MuiStep: { ...step },
+//     MuiStepConnector: { ...stepConnector },
+//     MuiStepLabel: { ...stepLabel },
+//     MuiStepIcon: { ...stepIcon },
+//     MuiSelect: { ...select },
+//     MuiFormControlLabel: { ...formControlLabel },
+//     MuiFormLabel: { ...formLabel },
+//     MuiCheckbox: { ...checkbox },
+//     MuiRadio: { ...radio },
+//     MuiAutocomplete: { ...autocomplete },
+//     MuiInput: { ...input },
+//     MuiOutlinedInput: { ...input },
+//     MuiFilledInput: { ...input },
+//     MuiPopover: { ...popover },
+//     MuiButtonBase: { ...buttonBase },
+//     MuiIcon: { ...icon },
+//     MuiSvgIcon: { ...svgIcon },
+//     MuiLink: { ...link },
+//   },
+// });
+export default function getTheme(mode = "light") {
+  return createTheme({
+    palette: {
+      ...colors,
+      mode,
+      background: {
+        // Soft blue-dark instead of pure black
+        default: mode === "dark" ? "#0f172a" : "#f5f7fa",
+        paper: mode === "dark" ? "#1e293b" : "#ffffff",
+      },
+      text: {
+        primary: mode === "dark" ? "#e2e8f0" : "#1a1a1a",
+        secondary: mode === "dark" ? "#94a3b8" : "#555",
       },
     },
-    MuiDrawer: { ...sidenav },
-    MuiList: { ...list },
-    MuiListItem: { ...listItem },
-    MuiListItemText: { ...listItemText },
-    MuiCard: { ...card },
-    MuiCardMedia: { ...cardMedia },
-    MuiCardContent: { ...cardContent },
-    MuiButton: { ...button },
-    MuiIconButton: { ...iconButton },
-    MuiInputBase: { ...inputBase },
-    MuiMenu: { ...menu },
-    MuiMenuItem: { ...menuItem },
-    MuiSwitch: { ...switchButton },
-    MuiDivider: { ...divider },
-    MuiTableContainer: { ...tableContainer },
-    MuiTableHead: { ...tableHead },
-    MuiTableCell: { ...tableCell },
-    MuiLinearProgress: { ...linearProgress },
-    MuiBreadcrumbs: { ...breadcrumbs },
-    MuiSlider: { ...slider },
-    MuiAvatar: { ...avatar },
-    MuiTooltip: { ...tooltip },
-    MuiAppBar: { ...appBar },
-    MuiTabs: { ...tabs },
-    MuiTab: { ...tab },
-    MuiStepper: { ...stepper },
-    MuiStep: { ...step },
-    MuiStepConnector: { ...stepConnector },
-    MuiStepLabel: { ...stepLabel },
-    MuiStepIcon: { ...stepIcon },
-    MuiSelect: { ...select },
-    MuiFormControlLabel: { ...formControlLabel },
-    MuiFormLabel: { ...formLabel },
-    MuiCheckbox: { ...checkbox },
-    MuiRadio: { ...radio },
-    MuiAutocomplete: { ...autocomplete },
-    MuiInput: { ...input },
-    MuiOutlinedInput: { ...input },
-    MuiFilledInput: { ...input },
-    MuiPopover: { ...popover },
-    MuiButtonBase: { ...buttonBase },
-    MuiIcon: { ...icon },
-    MuiSvgIcon: { ...svgIcon },
-    MuiLink: { ...link },
-  },
-});
+
+    breakpoints: { ...breakpoints },
+    typography: { ...typography },
+    boxShadows: { ...boxShadows },
+    borders: { ...borders },
+
+    functions: {
+      boxShadow,
+      hexToRgb,
+      linearGradient,
+      pxToRem,
+      rgba,
+    },
+
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          ...globals,
+          ...container,
+
+          body: {
+            backgroundColor:
+              mode === "dark" ? "#0f172a" : "#f5f7fa",
+            color: mode === "dark" ? "#e2e8f0" : "#1a1a1a",
+          },
+        },
+      },
+
+      MuiDrawer: { ...sidenav },
+      MuiList: { ...list },
+      MuiListItem: { ...listItem },
+      MuiListItemText: { ...listItemText },
+
+      MuiCard: {
+        ...card,
+        styleOverrides: {
+          root: {
+            backgroundColor:
+              mode === "dark" ? "#1e293b" : "#fff",
+            color: mode === "dark" ? "#e2e8f0" : "#1a1a1a",
+          },
+        },
+      },
+
+      MuiCardMedia: { ...cardMedia },
+      MuiCardContent: { ...cardContent },
+
+      MuiButton: {
+        ...button,
+        styleOverrides: {
+          root: {
+            color: mode === "dark" ? "#e2e8f0" : "#1a1a1a",
+          },
+        },
+      },
+
+      MuiIconButton: { ...iconButton },
+      MuiInputBase: { ...inputBase },
+      MuiMenu: { ...menu },
+      MuiMenuItem: { ...menuItem },
+      MuiSwitch: { ...switchButton },
+      MuiDivider: { ...divider },
+      MuiTableContainer: { ...tableContainer },
+      MuiTableHead: { ...tableHead },
+      MuiTableCell: { ...tableCell },
+      MuiLinearProgress: { ...linearProgress },
+      MuiBreadcrumbs: { ...breadcrumbs },
+      MuiSlider: { ...slider },
+      MuiAvatar: { ...avatar },
+      MuiTooltip: { ...tooltip },
+
+      MuiAppBar: {
+        ...appBar,
+        styleOverrides: {
+          root: {
+            backgroundColor:
+              mode === "dark" ? "#1e293b" : appBar.styleOverrides?.root?.backgroundColor,
+            color: mode === "dark" ? "#e2e8f0" : "#1a1a1a",
+          },
+        },
+      },
+
+      MuiTabs: { ...tabs },
+      MuiTab: { ...tab },
+
+      MuiStepper: { ...stepper },
+      MuiStep: { ...step },
+      MuiStepConnector: { ...stepConnector },
+      MuiStepLabel: { ...stepLabel },
+      MuiStepIcon: { ...stepIcon },
+
+      MuiSelect: { ...select },
+      MuiFormControlLabel: { ...formControlLabel },
+      MuiFormLabel: { ...formLabel },
+      MuiCheckbox: { ...checkbox },
+      MuiRadio: { ...radio },
+      MuiAutocomplete: { ...autocomplete },
+      MuiInput: { ...input },
+      MuiOutlinedInput: { ...input },
+      MuiFilledInput: { ...input },
+
+      MuiPopover: { ...popover },
+      MuiButtonBase: { ...buttonBase },
+      MuiIcon: { ...icon },
+      MuiSvgIcon: { ...svgIcon },
+      MuiLink: { ...link },
+    },
+  });
+}
+

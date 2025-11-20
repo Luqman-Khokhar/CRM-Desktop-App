@@ -36,13 +36,15 @@ function reducer(state, action) {
     case "LAYOUT": {
       return { ...state, layout: action.value };
     }
+    case "THEME_MODE": {
+      return { ...state, themeMode: action.value };
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
 
-// Soft UI Dashboard React context provider
 function SoftUIControllerProvider({ children }) {
   const initialState = {
     miniSidenav: false,
@@ -53,6 +55,7 @@ function SoftUIControllerProvider({ children }) {
     openConfigurator: false,
     direction: "ltr",
     layout: "dashboard",
+    themeMode: "light",
   };
 
   const [controller, dispatch] = useReducer(reducer, initialState);
@@ -87,7 +90,7 @@ const setFixedNavbar = (dispatch, value) => dispatch({ type: "FIXED_NAVBAR", val
 const setOpenConfigurator = (dispatch, value) => dispatch({ type: "OPEN_CONFIGURATOR", value });
 const setDirection = (dispatch, value) => dispatch({ type: "DIRECTION", value });
 const setLayout = (dispatch, value) => dispatch({ type: "LAYOUT", value });
-
+const setThemeMode = (dispatch, value) => dispatch({ type: "THEME_MODE", value });
 export {
   SoftUIControllerProvider,
   useSoftUIController,
@@ -99,4 +102,5 @@ export {
   setOpenConfigurator,
   setDirection,
   setLayout,
+  setThemeMode,
 };

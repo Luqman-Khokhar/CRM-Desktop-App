@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect } from "react";
 
 // react-router components
@@ -24,6 +9,9 @@ import PropTypes from "prop-types";
 // @mui material components
 import Container from "@mui/material/Container";
 import Icon from "@mui/material/Icon";
+import IconButton from "@mui/material/IconButton";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
@@ -36,8 +24,12 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 
 // Soft UI Dashboard React base styles
 import breakpoints from "assets/theme/base/breakpoints";
+import { setThemeMode } from "../../../context";
 
 function DefaultNavbar({ transparent, light, action }) {
+  const [controller, dispatch] = useSoftUIController();
+  const { themeMode } = controller;
+
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
 
@@ -142,6 +134,13 @@ function DefaultNavbar({ transparent, light, action }) {
               </SoftButton>
             </SoftBox>
           ))}
+        <IconButton
+          onClick={() =>
+            setThemeMode(dispatch, themeMode === "light" ? "dark" : "light")
+          }
+        >
+          {themeMode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+        </IconButton>
         <SoftBox
           display={{ xs: "inline-block", lg: "none" }}
           lineHeight={0}

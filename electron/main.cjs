@@ -3,16 +3,7 @@ const path = require("path");
 const url = require("url");
 
 // Detect dev mode (Vite running)
-const isDev = process.env.VITE_DEV_SERVER_URL !== undefined;
-
-if (isDev) {
-  // Enable auto reload in development
-  require("electron-reload")(__dirname, {
-    electron: path.join(__dirname, "../node_modules/.bin/electron.cmd"), // FIXED PATH
-    forceHardReset: true,
-    hardResetMethod: "exit",
-  });
-}
+const isDev = !app.isPackaged;
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -26,15 +17,12 @@ function createWindow() {
   });
 
   if (isDev) {
-    // Load Vite dev server
-    win.loadURL(process.env.VITE_DEV_SERVER_URL);
+    win.loadURL("http://localhost:5173");
     win.webContents.openDevTools();
   } else {
-    // Load production build
-    win.loadURL(
-      url.pathToFileURL(path.join(__dirname, "../dist/index.html")).href
-    );
+    win.loadFile(path.join(__dirname, "../dist/index.html"));
   }
+
 }
 
 app.whenReady().then(() => {

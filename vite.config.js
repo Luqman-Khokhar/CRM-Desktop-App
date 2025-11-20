@@ -5,14 +5,20 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [
     react({
-      fastRefresh: false
+      fastRefresh: true
     })
   ],
 
   base: "./",
 
   server: {
-    hmr: false
+    strictPort: true,
+    port: 5173,
+    hmr: {
+      protocol: "ws",
+      host: "localhost",
+      port: 5173
+    }
   },
 
   resolve: {

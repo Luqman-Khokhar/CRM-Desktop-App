@@ -1,4 +1,56 @@
+// ===== SOFT UI COLORS WITH CUSTOM SOFT DARK THEME ===== //
+
 const colors = {
+  // ---------------------------------------------------------
+  // 🌞 LIGHT THEME COLORS  (Default)
+  // ---------------------------------------------------------
+  lightTheme: {
+    background: {
+      main: "#f8f9fa",
+      card: "#ffffff",
+      sidenav: "#ffffff",
+    },
+    text: {
+      main: "#344767",
+      light: "#67748e",
+    },
+    border: "rgba(0,0,0,0.12)",
+    hover: "rgba(0,0,0,0.04)",
+  },
+
+  // ---------------------------------------------------------
+  // 🌙 DARK THEME COLORS  (Soft navy blue, easy for eyes)
+  // ---------------------------------------------------------
+  darkTheme: {
+    background: {
+      main: "#0d1b2a",      // main bg (soft navy black)
+      card: "#1b263b",       // card background
+      sidenav: "#1e2a3d",    // sidenav background
+    },
+    text: {
+      main: "#e0e6ed",       // soft white
+      light: "#9aa4b1",      // light grey-blue
+    },
+    border: "rgba(255,255,255,0.08)",    // soft borders
+    hover: "rgba(255,255,255,0.06)",     // subtle hover
+  },
+
+  // ---------------------------------------------------------
+  // 🔗 USED BY THEME (Auto changes based on mode)
+  // ---------------------------------------------------------
+  modeColors: (isDark) => ({
+    background: isDark ? "#0d1b2a" : "#f8f9fa",
+    card: isDark ? "#1b263b" : "#ffffff",
+    sidenav: isDark ? "#1e2a3d" : "#ffffff",
+    textMain: isDark ? "#e0e6ed" : "#344767",
+    textLight: isDark ? "#9aa4b1" : "#67748e",
+    border: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.12)",
+    hover: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+  }),
+
+  // ---------------------------------------------------------
+  // YOUR ORIGINAL COLOR SYSTEM (unchanged)
+  // ---------------------------------------------------------
   background: {
     default: "#f8f9fa",
   },
@@ -76,199 +128,51 @@ const colors = {
   },
 
   gradients: {
-    primary: {
-      main: "#7928ca",
-      state: "#ff0080",
-    },
-
-    secondary: {
-      main: "#627594",
-      state: "#a8b8d8",
-    },
-
-    info: {
-      main: "#2152ff",
-      state: "#21d4fd",
-    },
-
-    success: {
-      main: "#17ad37",
-      state: "#98ec2d",
-    },
-
-    warning: {
-      main: "#f53939",
-      state: "#fbcf33",
-    },
-
-    error: {
-      main: "#ea0606",
-      state: "#ff667c",
-    },
-
-    light: {
-      main: "#ced4da",
-      state: "#ebeff4",
-    },
-
-    dark: {
-      main: "#141727",
-      state: "#3a416f",
-    },
+    primary: { main: "#7928ca", state: "#ff0080" },
+    secondary: { main: "#627594", state: "#a8b8d8" },
+    info: { main: "#2152ff", state: "#21d4fd" },
+    success: { main: "#17ad37", state: "#98ec2d" },
+    warning: { main: "#f53939", state: "#fbcf33" },
+    error: { main: "#ea0606", state: "#ff667c" },
+    light: { main: "#ced4da", state: "#ebeff4" },
+    dark: { main: "#141727", state: "#3a416f" },
   },
 
   socialMediaColors: {
-    facebook: {
-      main: "#3b5998",
-      dark: "#344e86",
-    },
-
-    twitter: {
-      main: "#55acee",
-      dark: "#3ea1ec",
-    },
-
-    instagram: {
-      main: "#125688",
-      dark: "#0e456d",
-    },
-
-    linkedin: {
-      main: "#0077b5",
-      dark: "#00669c",
-    },
-
-    pinterest: {
-      main: "#cc2127",
-      dark: "#b21d22",
-    },
-
-    youtube: {
-      main: "#e52d27",
-      dark: "#d41f1a",
-    },
-
-    vimeo: {
-      main: "#1ab7ea",
-      dark: "#13a3d2",
-    },
-
-    slack: {
-      main: "#3aaf85",
-      dark: "#329874",
-    },
-
-    dribbble: {
-      main: "#ea4c89",
-      dark: "#e73177",
-    },
-
-    github: {
-      main: "#24292e",
-      dark: "#171a1d",
-    },
-
-    reddit: {
-      main: "#ff4500",
-      dark: "#e03d00",
-    },
-
-    tumblr: {
-      main: "#35465c",
-      dark: "#2a3749",
-    },
+    facebook: { main: "#3b5998", dark: "#344e86" },
+    twitter: { main: "#55acee", dark: "#3ea1ec" },
+    instagram: { main: "#125688", dark: "#0e456d" },
+    linkedin: { main: "#0077b5", dark: "#00669c" },
+    pinterest: { main: "#cc2127", dark: "#b21d22" },
+    youtube: { main: "#e52d27", dark: "#d41f1a" },
+    vimeo: { main: "#1ab7ea", dark: "#13a3d2" },
+    slack: { main: "#3aaf85", dark: "#329874" },
+    dribbble: { main: "#ea4c89", dark: "#e73177" },
+    github: { main: "#24292e", dark: "#171a1d" },
+    reddit: { main: "#ff4500", dark: "#e03d00" },
+    tumblr: { main: "#35465c", dark: "#2a3749" },
   },
 
   alertColors: {
-    primary: {
-      main: "#7928ca",
-      state: "#d6006c",
-      border: "#efb6e2",
-    },
-
-    secondary: {
-      main: "#627594",
-      state: "#8ca1cb",
-      border: "#dadee6",
-    },
-
-    info: {
-      main: "#2152ff",
-      state: "#02c6f3",
-      border: "#b9ecf8",
-    },
-
-    success: {
-      main: "#17ad37",
-      state: "#84dc14",
-      border: "#daf3b9",
-    },
-
-    warning: {
-      main: "#f53939",
-      state: "#fac60b",
-      border: "#fef1c2",
-    },
-
-    error: {
-      main: "#ea0606",
-      state: "#ff3d59",
-      border: "#f9b4b4",
-    },
-
-    light: {
-      main: "#ced4da",
-      state: "#d1dae6",
-      border: "#f8f9fa",
-    },
-
-    dark: {
-      main: "#141727",
-      state: "#2c3154",
-      border: "#c2c8d1",
-    },
+    primary: { main: "#7928ca", state: "#d6006c", border: "#efb6e2" },
+    secondary: { main: "#627594", state: "#8ca1cb", border: "#dadee6" },
+    info: { main: "#2152ff", state: "#02c6f3", border: "#b9ecf8" },
+    success: { main: "#17ad37", state: "#84dc14", border: "#daf3b9" },
+    warning: { main: "#f53939", state: "#fac60b", border: "#fef1c2" },
+    error: { main: "#ea0606", state: "#ff3d59", border: "#f9b4b4" },
+    light: { main: "#ced4da", state: "#d1dae6", border: "#f8f9fa" },
+    dark: { main: "#141727", state: "#2c3154", border: "#c2c8d1" },
   },
 
   badgeColors: {
-    primary: {
-      background: "#f883dd",
-      text: "#a3017e",
-    },
-
-    secondary: {
-      background: "#e4e8ed",
-      text: "#5974a2",
-    },
-
-    info: {
-      background: "#abe9f7",
-      text: "#08a1c4",
-    },
-
-    success: {
-      background: "#cdf59b",
-      text: "#67b108",
-    },
-
-    warning: {
-      background: "#fef5d3",
-      text: "#fbc400",
-    },
-
-    error: {
-      background: "#fc9797",
-      text: "#bd0000",
-    },
-
-    light: {
-      background: "#ffffff",
-      text: "#c7d3de",
-    },
-
-    dark: {
-      background: "#8097bf",
-      text: "#1e2e4a",
-    },
+    primary: { background: "#f883dd", text: "#a3017e" },
+    secondary: { background: "#e4e8ed", text: "#5974a2" },
+    info: { background: "#abe9f7", text: "#08a1c4" },
+    success: { background: "#cdf59b", text: "#67b108" },
+    warning: { background: "#fef5d3", text: "#fbc400" },
+    error: { background: "#fc9797", text: "#bd0000" },
+    light: { background: "#ffffff", text: "#c7d3de" },
+    dark: { background: "#8097bf", text: "#1e2e4a" },
   },
 
   inputColors: {

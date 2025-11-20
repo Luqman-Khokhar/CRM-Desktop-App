@@ -26,7 +26,7 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+  
 
 // Billing page components
 import PaymentMethod from "layouts/billing/components/PaymentMethod";
@@ -83,7 +83,7 @@ function Billing() {
           </Grid>
         </SoftBox>
       </SoftBox>
-      <Footer />
+       
     </DashboardLayout>
   );
 }
